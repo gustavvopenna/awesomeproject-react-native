@@ -9,19 +9,38 @@
 import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View } from 'react-native'
 
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-//   android:
-//     'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu'
-// })
-
 type Props = {}
 export default class App extends Component<Props> {
+  constructor() {
+    super()
+    this.state = {}
+    this.state.customStyles = {
+      color: 'blue'
+    }
+
+    setInterval(() => {
+      if (this.state.customStyles.color == 'blue') {
+        this.setState({
+          customStyles: {
+            color: 'red'
+          }
+        })
+      } else {
+        this.setState({
+          customStyles: {
+            color: 'blue'
+          }
+        })
+      }
+    }, 1000)
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Hello World!</Text>
+        <Text style={[styles.welcome, this.state.customStyles]}>
+          Hello World!
+        </Text>
       </View>
     )
   }
@@ -35,9 +54,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF'
   },
   welcome: {
-    fontSize: 50,
+    fontSize: 60,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
+    color: 'green'
   },
   instructions: {
     textAlign: 'center',
