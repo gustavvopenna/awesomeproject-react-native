@@ -14,33 +14,41 @@ export default class App extends Component<Props> {
   constructor() {
     super()
     this.state = {}
-    this.state.customStyles = {
-      color: 'blue'
-    }
+    //   this.state.customStyles = {
+    //     color: 'blue'
+    //   }
 
-    setInterval(() => {
-      if (this.state.customStyles.color == 'blue') {
-        this.setState({
-          customStyles: {
-            color: 'red'
-          }
-        })
-      } else {
-        this.setState({
-          customStyles: {
-            color: 'blue'
-          }
-        })
-      }
-    }, 1000)
+    //   setInterval(() => {
+    //     if (this.state.customStyles.color == 'blue') {
+    //       this.setState({
+    //         customStyles: {
+    //           color: 'red'
+    //         }
+    //       })
+    //     } else {
+    //       this.setState({
+    //         customStyles: {
+    //           color: 'blue'
+    //         }
+    //       })
+    //     }
+    //   }, 1000)
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.welcome, this.state.customStyles]}>
-          Hello World!
-        </Text>
+        <View style={[styles.isHalf1, styles.contentCentered]}>
+          <Text style={styles.text}>Half 1</Text>
+        </View>
+        <View style={styles.isHalf2}>
+          <View style={[styles.isHalf2_1, styles.contentCentered]}>
+            <Text style={styles.text}>Half 2-1</Text>
+          </View>
+          <View style={[styles.isHalf2_2, styles.contentCentered]}>
+            <Text style={styles.text}>Half 2-2</Text>
+          </View>
+        </View>
       </View>
     )
   }
@@ -48,20 +56,30 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  isHalf1: {
+    backgroundColor: 'red',
+    flex: 1
+  },
+  isHalf2: {
+    backgroundColor: 'blue',
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  isHalf2_1: {
+    flex: 1,
+    backgroundColor: 'green'
+  },
+  isHalf2_2: {
+    flex: 1,
+    backgroundColor: 'purple'
+  },
+  contentCentered: {
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    justifyContent: 'center'
   },
-  welcome: {
-    fontSize: 60,
-    textAlign: 'center',
-    margin: 10,
-    color: 'green'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
+  text: {
+    fontSize: 40
   }
 })
